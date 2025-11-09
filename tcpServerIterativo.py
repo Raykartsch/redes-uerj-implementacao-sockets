@@ -9,6 +9,7 @@ tcp = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 tcp.bind(orig)
 tcp.listen(1)
 
+print("Servidor TCP ONLINE!")
 while True:
     con, cliente = tcp.accept()
     print("Conectado com %s" % str(cliente))
@@ -17,9 +18,10 @@ while True:
         msg = con.recv(1024)
         if not msg:
             break
-        print(msg)
+        print("Received:", msg)
         request = json.loads(msg)
-        resposta = "SERVER SIDE: " + str.upper(translate(str(request['msg']), request['language']))
+        resposta = "TRADUCAO: " + str.upper(translate(str(request['msg']), request['language']))
+        print("Returned to customer:", resposta)
         con.send(resposta.encode('utf-8'))
 
     print(str.format("Finalizando conexao do cliente {}", cliente))

@@ -6,6 +6,8 @@ from translator import translate
 HOST = ''              # Endereco IP do Servidor
 PORT = 5300            # Porta que o Servidor ouvirá
 orig = (HOST, PORT)
+
+print("Servidor TCP ONLINE!")
 def conectado(con, cliente):
     print('Conectado por', cliente)
 
@@ -29,4 +31,4 @@ while True:
     clienteThread = thread.Thread(target=conectado, args=(con, cliente))
     clienteThread.start()
 
-tcp.close()
+    tcp.close()
